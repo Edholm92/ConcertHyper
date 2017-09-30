@@ -1,5 +1,6 @@
 package com.weekendhack.concerthyper;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -35,8 +37,20 @@ public class AddConcertsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_add_concert, container, false);
         searchInput = (EditText) view.findViewById(R.id.et_search_artist);
-
         mDisplay = (TextView) view.findViewById(R.id.tv_lol);
+        Button button = (Button) view.findViewById(R.id.btn_manual__add_concert);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                switch (view.getId()) {
+                    case R.id.btn_manual__add_concert:
+                        Intent i = new Intent(getActivity(), AddConcertActivity.class);
+                        startActivity(i);
+                        break;
+                }
+            }
+        });
+
         // Inflate the layout for this fragment
         return view;
     }
@@ -44,6 +58,7 @@ public class AddConcertsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -73,5 +88,7 @@ public class AddConcertsFragment extends Fragment {
 
             }
         });
+
     }
+
 }

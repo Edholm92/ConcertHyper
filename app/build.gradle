@@ -21,10 +21,12 @@ android {
 
 repositories {
     mavenCentral()
+    maven { url "https://jitpack.io" }
     flatDir {
         dirs 'libs'
     }
 }
+
 
 
 
@@ -37,7 +39,11 @@ dependencies {
     // This library handles music playback
     compile 'com.spotify.sdk:spotify-player-24-noconnect-2.20b@aar'
 
+    // This library is a wrapper for the spotify web api
+    
+
     // All other dependencies for your app should also be here:
+    compile 'com.github.kaaes:spotify-web-api-android:0.4.1@aar'
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.android.support:design:26.0.0-alpha1'
