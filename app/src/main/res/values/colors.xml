@@ -3,7 +3,12 @@
     <color name="colorPrimary">#125688</color>
     <color name="colorPrimaryDark">#125688</color>
     <color name="textColorPrimary">#FFFFFF</color>
-    <color name="windowBackground">#FFFFFF</color>
+    <color name="windowBackground">#ffffff</color>
     <color name="navigationBarColor">#000000</color>
-    <color name="colorAccent">#c8e8ff</color>
+    <color name="colorAccent">#1391ff</color>
+    <color name="bright_foreground_holo_dark">#ffffff</color>
+    <color name="bright_foreground_disabled_holo_dark">#343434</color>
+    <color name="accent_material_dark">#2e8fff</color>
+    <color name="foreground_material_dark">#ffffff</color>
+    <color name="primary_text_default_material_dark">#ffffff</color>
 </resources>
