@@ -4,13 +4,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView"
+
+
+    <Button
+        android:id="@+id/btn_manual__add_concert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:text="My Playlist"
-        android:textSize="40dp"
-        android:textStyle="bold"/>
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:text="update spotify list"
+        android:onClick="buttonClick"
+        android:layout_alignParentTop="true" />
 
 </RelativeLayout>

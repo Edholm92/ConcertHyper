@@ -2,34 +2,37 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:drawSelectorOnTop="false"
     android:background="@drawable/calendarbackground"
-    android:layout_margin="15dp"
+    android:layout_margin="5dp"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <ImageView android:id="@+id/cover"
+
+    <ImageView
+        android:id="@+id/iv_playlist_albumcover"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_margin="5dp"
-        android:padding="5dp"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:background="@drawable/calendarbackground"/>
+        android:background="@drawable/ic_my_playlist"
+        android:padding="5dp" />
+
     <LinearLayout
         android:layout_margin="5dp"
         android:orientation="vertical"
         android:layout_gravity="center_vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView android:id="@+id/re_calendar_artist"
+        <TextView android:id="@+id/te_playlist_artist"
             android:text="Artist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:textColor="#FFFF"/>
-        <TextView android:id="@+id/te_calendar_location"
-            android:text="Location"
+            android:textColor="#FFFF" />
+        <TextView android:id="@+id/te_playlist_song"
+            android:text="Song name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <TextView android:id="@+id/te_calendar_dateTime"
-            android:text="DD/MM/YYYY , HH:MM"
+        <TextView android:id="@+id/te_playlist_lenght"
+            android:text="MM:SS"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
