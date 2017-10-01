@@ -9,6 +9,7 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -27,6 +28,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddConcertsFragment extends Fragment {
+    final ArrayList<Artist> artistArrayList = new ArrayList<>(5);
 
     private EditText searchInput;
     TextView mFirstArtist;
@@ -61,6 +63,16 @@ public class AddConcertsFragment extends Fragment {
         mFourthArtist = (TextView) view.findViewById(R.id.tv_artist_4);
         mFifthArtist = (TextView) view.findViewById(R.id.tv_artist_5);
 
+        mFirstArtist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), AddConcertActivity.class);
+                i.putExtra("Name", artistArrayList.get(0).getName());
+                i.putExtra("ID", artistArrayList.get(0).getId());
+                startActivity(i);
+            }
+        });
+
         Button button = (Button) view.findViewById(R.id.btn_manual__add_concert);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +93,6 @@ public class AddConcertsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        final ArrayList<Artist> artistArrayList = new ArrayList<>();
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -105,7 +116,6 @@ public class AddConcertsFragment extends Fragment {
                 searchInput.setInputType(InputType.TYPE_CLASS_TEXT);
                 final String artistSearch = searchInput.getText().toString();
 
-                //TODO: Use Spotify search
                 Thread thread = new Thread(new Runnable() {
 
                     @Override
@@ -144,5 +154,8 @@ public class AddConcertsFragment extends Fragment {
         });
 
     }
+
+
+
 
 }

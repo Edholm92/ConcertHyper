@@ -45,6 +45,9 @@ dependencies {
     }
     compile 'commons-beanutils:commons-beanutils:20030211.134440'
 
+    // GSON for JSON
+    compile 'com.google.code.gson:gson:2.8.1'
+
     // All other dependencies for your app should also be here:
     compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
