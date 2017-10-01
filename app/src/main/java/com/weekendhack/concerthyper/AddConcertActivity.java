@@ -73,7 +73,6 @@ public class AddConcertActivity extends AppCompatActivity {
 
                         String key = sArtist + sDate;
 
-                        // TODO: Store all inputed values
                         saveChanges(mPrefs, key, json);
 
                         Log.w("IN CREATE", String.valueOf(mPrefs.getAll()));
