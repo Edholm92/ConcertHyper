@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,23 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.wrapper.spotify.Api;
+import com.wrapper.spotify.methods.ArtistSearchRequest;
+import com.wrapper.spotify.methods.TrackSearchRequest;
+import com.wrapper.spotify.models.Artist;
+import com.wrapper.spotify.models.Page;
+import com.wrapper.spotify.models.Track;
+
 import java.net.URL;
+import java.util.List;
 
 public class AddConcertsFragment extends Fragment {
 
     private EditText searchInput;
     TextView mDisplay;
+
+    // Create an API instance. The default instance connects to https://api.spotify.com/.
+    Api api = MainActivity.API;
 
     public AddConcertsFragment() {
         // Required empty public constructor
@@ -28,6 +40,7 @@ public class AddConcertsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
     }
 
@@ -68,24 +81,45 @@ public class AddConcertsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                mDisplay.setText(searchInput.getText());
-                searchInput.setInputType(InputType.TYPE_CLASS_TEXT);
-                String artistSearch = searchInput.getText().toString();
 
-                //TODO: Use Spotify search
-                AsyncTask.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        // All your networking logic
-                        // should be here
-                        //URL spotifyEndpoint = new URL("https://api.spotify.com/");
-                    }
-                });
             }
 
             @Override
             public void afterTextChanged(Editable editable) {
+                //mDisplay.setText(searchInput.getText());
+                searchInput.setInputType(InputType.TYPE_CLASS_TEXT);
+                final String artistSearch = searchInput.getText().toString();
 
+                //TODO: Use Spotify search
+                Thread thread = new Thread(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        try  {
+                            //Your code goes here
+                            final ArtistSearchRequest request = api.searchArtists(artistSearch).market("SE").limit(5).build();
+
+                            try {
+                                final Page<Artist> artistSearchResult = request.get();
+                                final List<Artist> artists = artistSearchResult.getItems();
+
+                                Log.i("FOUND","I've found " + artistSearchResult.getTotal() + " artists!");
+
+                                for (Artist artist : artists) {
+                                    mDisplay.setText(artist.getName());
+                                    Log.i("ARTIST NAME", artist.getName());
+                                }
+
+                            } catch (Exception e) {
+                                Log.w("ISSUE","Something went wrong!" + e.getMessage() + e.toString());
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+
+                thread.start();
             }
         });
 

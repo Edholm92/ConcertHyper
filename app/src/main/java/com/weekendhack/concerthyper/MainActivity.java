@@ -14,6 +14,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.common.util.concurrent.FutureCallback;
+import com.google.common.util.concurrent.Futures;
+import com.google.common.util.concurrent.SettableFuture;
 import com.spotify.sdk.android.authentication.AuthenticationClient;
 import com.spotify.sdk.android.authentication.AuthenticationRequest;
 import com.spotify.sdk.android.authentication.AuthenticationResponse;
@@ -24,6 +27,9 @@ import com.spotify.sdk.android.player.Player;
 import com.spotify.sdk.android.player.PlayerEvent;
 import com.spotify.sdk.android.player.Spotify;
 import com.spotify.sdk.android.player.SpotifyPlayer;
+import com.wrapper.spotify.Api;
+import com.wrapper.spotify.methods.authentication.ClientCredentialsGrantRequest;
+import com.wrapper.spotify.models.ClientCredentials;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,9 +38,15 @@ public class MainActivity extends AppCompatActivity implements
         SpotifyPlayer.NotificationCallback, ConnectionStateCallback
 {
     // Spotify values
-    private static final String CLIENT_ID = " 1eaeb905d68c40fdb403953d53ad1366";
+    private static final String CLIENT_ID = "1eaeb905d68c40fdb403953d53ad1366";
+    private static final String CLIENT_SECRET = "d2b1bdfbaf5042bd8ff6653e4ecb03fd";
     private static final String REDIRECT_URI = "concert-hyper-login://callback";
     private Player mPlayer;
+    public static final Api API = Api.builder()
+            .clientId(CLIENT_ID)
+            .clientSecret(CLIENT_SECRET)
+            .redirectURI(REDIRECT_URI)
+            .build();
 
     // Request code that will be used to verify if the result comes from correct activity
     // Can be any integer
@@ -74,6 +86,8 @@ public class MainActivity extends AppCompatActivity implements
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         setupTabIcons();
+
+
     }
 
     private void setupTabIcons() {
@@ -129,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements
             AuthenticationResponse response = AuthenticationClient.getResponse(resultCode, intent);
             if (response.getType() == AuthenticationResponse.Type.TOKEN) {
                 Config playerConfig = new Config(this, response.getAccessToken(), CLIENT_ID);
+                API.setAccessToken(response.getAccessToken());
                 Spotify.getPlayer(playerConfig, this, new SpotifyPlayer.InitializationObserver() {
                     @Override
                     public void onInitialized(SpotifyPlayer spotifyPlayer) {
