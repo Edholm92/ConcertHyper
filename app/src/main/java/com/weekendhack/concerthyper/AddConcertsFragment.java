@@ -23,12 +23,17 @@ import com.wrapper.spotify.models.Page;
 import com.wrapper.spotify.models.Track;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AddConcertsFragment extends Fragment {
 
     private EditText searchInput;
-    TextView mDisplay;
+    TextView mFirstArtist;
+    TextView mSecondArtist;
+    TextView mThirdArtist;
+    TextView mFourthArtist;
+    TextView mFifthArtist;
 
     // Create an API instance. The default instance connects to https://api.spotify.com/.
     Api api = MainActivity.API;
@@ -50,7 +55,12 @@ public class AddConcertsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_add_concert, container, false);
         searchInput = (EditText) view.findViewById(R.id.et_search_artist);
-        mDisplay = (TextView) view.findViewById(R.id.tv_lol);
+        mFirstArtist = (TextView) view.findViewById(R.id.tv_artist_1);
+        mSecondArtist = (TextView) view.findViewById(R.id.tv_artist_2);
+        mThirdArtist = (TextView) view.findViewById(R.id.tv_artist_3);
+        mFourthArtist = (TextView) view.findViewById(R.id.tv_artist_4);
+        mFifthArtist = (TextView) view.findViewById(R.id.tv_artist_5);
+
         Button button = (Button) view.findViewById(R.id.btn_manual__add_concert);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +81,7 @@ public class AddConcertsFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
+        final ArrayList<Artist> artistArrayList = new ArrayList<>();
 
         searchInput.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,7 +91,12 @@ public class AddConcertsFragment extends Fragment {
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
+                artistArrayList.clear();
+                mFirstArtist.setText(R.string.base);
+                mSecondArtist.setText(R.string.base);
+                mThirdArtist.setText(R.string.base);
+                mFourthArtist.setText(R.string.base);
+                mFifthArtist.setText(R.string.base);
             }
 
             @Override
@@ -106,9 +121,14 @@ public class AddConcertsFragment extends Fragment {
                                 Log.i("FOUND","I've found " + artistSearchResult.getTotal() + " artists!");
 
                                 for (Artist artist : artists) {
-                                    mDisplay.setText(artist.getName());
+                                    artistArrayList.add(artist);
                                     Log.i("ARTIST NAME", artist.getName());
                                 }
+                                mFirstArtist.setText(artistArrayList.get(0).getName());
+                                mSecondArtist.setText(artistArrayList.get(1).getName());
+                                mThirdArtist.setText(artistArrayList.get(2).getName());
+                                mFourthArtist.setText(artistArrayList.get(3).getName());
+                                mFifthArtist.setText(artistArrayList.get(4).getName());
 
                             } catch (Exception e) {
                                 Log.w("ISSUE","Something went wrong!" + e.getMessage() + e.toString());
