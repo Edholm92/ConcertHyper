@@ -1,4 +1,4 @@
-package com.weekendhack.concerthyper;
+package com.weekendhack.concerthyper.concerts;
 
 import java.util.Calendar;
 import java.util.Date;

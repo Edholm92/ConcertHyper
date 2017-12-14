@@ -8,6 +8,10 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.weekendhack.concerthyper.concerts.AddConcertsFragment;
+import com.weekendhack.concerthyper.concerts.MyConcertsFragment;
+import com.weekendhack.concerthyper.playlist.MyPlaylistFragment;
+
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 

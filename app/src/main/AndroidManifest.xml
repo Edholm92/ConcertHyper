@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".MainActivity" />
-        <activity android:name=".AddConcertActivity"></activity>
+        <activity android:name=".concerts.AddConcertActivity"></activity>
     </application>
 
 </manifest>

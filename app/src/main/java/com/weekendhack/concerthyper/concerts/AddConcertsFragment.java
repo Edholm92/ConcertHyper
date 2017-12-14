@@ -1,7 +1,6 @@
-package com.weekendhack.concerthyper;
+package com.weekendhack.concerthyper.concerts;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
@@ -9,21 +8,19 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.weekendhack.concerthyper.MainActivity;
+import com.weekendhack.concerthyper.R;
 import com.wrapper.spotify.Api;
 import com.wrapper.spotify.methods.ArtistSearchRequest;
-import com.wrapper.spotify.methods.TrackSearchRequest;
 import com.wrapper.spotify.models.Artist;
 import com.wrapper.spotify.models.Page;
-import com.wrapper.spotify.models.Track;
 
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.weekendhack.concerthyper;
+package com.weekendhack.concerthyper.calendar;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.weekendhack.concerthyper.R;
 
 import java.util.ArrayList;
 
