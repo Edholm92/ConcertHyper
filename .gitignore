@@ -34,3 +34,4 @@ local.properties
 
 # OSX Garbage
 .DS_Store
+.idea/*
